@@ -41,7 +41,7 @@ namespace MyStringBuilder
             string output = "";
             foreach (string s in this.curArray)
             {
-                if (s != "")
+                if (s != "" && s != null)
                 {
                     n += 1;
                     output += "[" + n + ":" + s + "]";
