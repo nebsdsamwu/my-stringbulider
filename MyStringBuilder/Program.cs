@@ -11,14 +11,14 @@ namespace MyStringBuilder
         static void Main(string[] args)
         {
             string[] words = new string[500];
-            for (int i=0; i< words.Length; i++)
+            for (int i = 0; i < words.Length; i++)
             {
-                words[i] = "AAABBB";
+                words[i] = i + "AAABBB";
             }
 
             int n = 0;
             StringBuilder sb = new StringBuilder();
-            foreach(var s in words)
+            foreach (var s in words)
             {
                 sb.Append(s);
             }
@@ -28,7 +28,7 @@ namespace MyStringBuilder
         }
     }
 
-    public class StringBuilder: ResizableArray
+    public class StringBuilder : ResizableArray
     {
         public void Append(string s)
         {
@@ -71,18 +71,20 @@ namespace MyStringBuilder
 
         public void Add(string inStr)
         {
-            if (this.count == this.curArray.Length)
+            if (count == curArray.Length)
             {
-                string[] newArray = new string[this.curArray.Length * 2];
-                for (int i = 0; i < this.curArray.Length; i++)
+                string[] newArray = new string[curArray.Length * ResizeFactor];
+                for (int i = 0; i < curArray.Length; i++)
                 {
-                    newArray[i] = this.curArray[i];
+                    newArray[i] = curArray[i];
                 }
-                this.curArray = newArray;
+                curArray = newArray;
+                curArray[count] = inStr;
+                count += 1;
             }
             else
             {
-                this.curArray[count] = inStr;
+                curArray[count] = inStr;
                 count += 1;
             }
         }
